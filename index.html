@@ -22,9 +22,9 @@
         const PostCard = (props) => {
             return (
                 <div className="postcard">
-                    <div class="postimage"></div>
-                    <div class="content">
-                        <div class="destiny">
+                    <div className="postimage"></div>
+                    <div className="content">
+                        <div className="destiny">
                             <h5>{props.to.destinatary}</h5>
                             <h5>{props.to.loc}, {props.to.str}</h5>
                             <h5>{props.to.city}</h5>
@@ -32,7 +32,7 @@
                         </div>
                         <h1>Estimado amigo</h1>
                         <p>{props.msg}</p>
-                        <h4 class="signature">Atte. Daniel</h4>
+                        <h4 className="signature">Atte. Daniel</h4>
                     </div>
                 </div>
             )
