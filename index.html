@@ -6,6 +6,7 @@
     <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
 
     <div id="root"></div>
 
@@ -20,30 +21,38 @@
 
         const PostCard = (props) => {
             return (
-                <div className="postcard"> 
-                    <div className="postImage">
-                    <h5>Firulais</h5>
-                    </div>
-                    <div className="Content">
-                        <h1 className="">{props.to}</h1>
-                        <h1 className="">{props.msg}</h1>
-
-                        <h5>Atte. Daniel</h5>
+                <div className="postcard">
+                    <div class="postimage"></div>
+                    <div class="content">
+                        <div class="destiny">
+                            <h5>{props.to.destinatary}</h5>
+                            <h5>{props.to.loc}, {props.to.str}</h5>
+                            <h5>{props.to.city}</h5>
+                            <h5>{props.to.zip}</h5>
+                        </div>
+                        <h1>Estimado amigo</h1>
+                        <p>{props.msg}</p>
+                        <h4 class="signature">Atte. Daniel</h4>
                     </div>
                 </div>
             )
         }
 
         PostCard.propTypes = {
-            to: PropTypes.string.isRequired,
-            msg: PropTypes.string.isRequired,
+            to: PropTypes.objectOf(PropTypes.string),
+            msg: PropTypes.string.isRequired,   
         }
 
         const props = {
-            to: 'Firulais',
-            msg: 'Goo boy',
+            to: {
+                destinatary: 'Tony Stank',
+                city: 'New York',
+                zip: '11706',
+                str: 'Maple ave 1317',
+                loc: 'Bay Shore' 
+            },
+            msg: 'Un saludo desde México, ya crecio el Firulais',
         }
-
 
         const RootJSX = (
             <>

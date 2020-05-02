@@ -1,16 +1,46 @@
+body {
+    font-family: 'Helvetica', 'Segoe UI'; 
+}
+
 .postCard {
     display: flex;
     flex-direction: row;
-    border-radius: 1rem;
-    -webkit-box-shadow: 10px 10px 30px -12px rgba(125,112,125,1);
-    -moz-box-shadow: 10px 10px 30px -12px rgba(125,112,125,1);
+    border-radius: .5rem;
     box-shadow: 10px 10px 30px -12px rgba(125,112,125,1);
-
     margin: 5rem;
+}
+
+
+.postcard p {
+    font-family: 'Parisienne', cursive;
+    font-size: 3rem;
+}
+
+.destiny {
+    margin-top: 3rem;
+    align-self: flex-end;
+}
+
+.destiny h5 {
+    margin: 0;
+}
+
+.signature {
+    font-size: 2rem;
+    align-self: flex-end;
+}
+
+.content {
+    padding-right: 6rem;
+    padding-left: 6rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .postImage {
     width: 40%;
+    background-origin: border-box;
     background-image: url(/dog.jpg);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
