@@ -10,10 +10,16 @@ body {
     margin: 5rem;
 }
 
-
-.postcard p {
-    font-family: 'Parisienne', cursive;
+.msg {
     font-size: 3rem;
+}
+
+.cursive {
+    font-family: 'Parisienne', cursive;;
+}
+
+.simple {
+    font-family: 'Pangolin', cursive;
 }
 
 .destiny {

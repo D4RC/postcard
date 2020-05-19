@@ -7,6 +7,7 @@
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
 
     <div id="root"></div>
 
@@ -31,12 +32,16 @@
 
         const PostCard = (props) => {
             const {
-               to,
-               msg
+                to,
+                msg,
+                color,
+                font='cursive'
             } = props;
 
+            const colorStyle = color ? {backgroundColor: color}:{};
+
             return (
-                <div className="postcard">
+                <div className="postcard" style={colorStyle}>
                     <div className="postimage"></div>
                     <div className="content">
                         <div className="destiny">
@@ -46,7 +51,7 @@
                             <h5>{to.zip}</h5>
                         </div>
                         <h1>Estimado amigo</h1>
-                        <p>{msg}</p>
+                        <p className={`msg ${font}`}>{msg}</p>
                         <h4 className="signature">Atte. Daniel</h4>
                     </div>
                 </div>
@@ -72,7 +77,9 @@
 
         const RootJSX = (
             <>
-                <PostCard {...props}></PostCard>
+                <PostCard {...props} color='lightBlue' font='cursive'></PostCard>
+                <PostCard {...props} color="Lavender" font="simple"></PostCard>
+                <PostCard {...props} color="whiteSmoke"></PostCard>
             </>
         )
 
