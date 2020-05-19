@@ -17,21 +17,36 @@
             Mensaje
         */
 
+        /*
+        V2
+            Props de styled components
+                backgroundColor
+                fontStyle
+
+            Estado 
+                Modificaciones a to, message
+        */
+
         const rootElement = document.getElementById('root');
 
         const PostCard = (props) => {
+            const {
+               to,
+               msg
+            } = props;
+
             return (
                 <div className="postcard">
                     <div className="postimage"></div>
                     <div className="content">
                         <div className="destiny">
-                            <h5>{props.to.destinatary}</h5>
-                            <h5>{props.to.loc}, {props.to.str}</h5>
-                            <h5>{props.to.city}</h5>
-                            <h5>{props.to.zip}</h5>
+                            <h5>{to.destinatary}</h5>
+                            <h5>{to.loc}, {to.str}</h5>
+                            <h5>{to.city}</h5>
+                            <h5>{to.zip}</h5>
                         </div>
                         <h1>Estimado amigo</h1>
-                        <p>{props.msg}</p>
+                        <p>{msg}</p>
                         <h4 className="signature">Atte. Daniel</h4>
                     </div>
                 </div>
@@ -41,6 +56,7 @@
         PostCard.propTypes = {
             to: PropTypes.objectOf(PropTypes.string),
             msg: PropTypes.string.isRequired,   
+            
         }
 
         const props = {
