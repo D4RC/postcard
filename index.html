@@ -61,7 +61,8 @@
         PostCard.propTypes = {
             to: PropTypes.objectOf(PropTypes.string),
             msg: PropTypes.string.isRequired,   
-            
+            color: PropTypes.string,
+            font: PropTypes.oneOf(['cursive', 'simple'])
         }
 
         const props = {
