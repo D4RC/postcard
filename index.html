@@ -128,7 +128,7 @@
             }
 
             function handleClickSend() {
-                alert(`Mensaje enviado a: ${props.to.destinatary}`)
+                alert(`Mensaje enviado a: ${JSON.parse(localStorage.getItem('destinataryData')).destinatary}`)
             }
 
             function textArea() {
