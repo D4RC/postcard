@@ -56,21 +56,27 @@
         }
 
         const DestinataryData = (props) => {
-            const {
-                destinatary,
-                loc,
-                city,
-                zip,
-                str
-            } = props;
+            const [destinataryData, setDestinataryData] = React.useState(JSON.parse(localStorage.getItem('destinataryData'))||{...props});
+			
+			React.useEffect(() => {
+                window.localStorage.setItem('destinataryData', JSON.stringify(destinataryData));
+			});
+
+			function handleChange(event) {
+                const copy = {...destinataryData}
+                copy[event.target.id]=event.target.value
+                setDestinataryData({
+                    ...copy
+                })
+			}
 
             if(props.editable)
                 return (
                     <div className="destiny">
                         <form className="form">
-                        {Object.entries(props).map((item)=> {
+                        {Object.entries(destinataryData).map((item)=> {
                             return (
-                                <input className="input" value={item[1]} key={item[0]}></input>
+                                <input className="input" value={item[1]} key={item[0]} id={item[0]} onChange={handleChange}></input>
                                 );
                             }
                         )}
