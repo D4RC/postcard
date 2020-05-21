@@ -14,6 +14,7 @@
 
     <script type="text/babel">
         /*
+        V1
         Atributos dinamicos:
             A quien
             Mensaje
@@ -27,6 +28,16 @@
 
             Estado 
                 Modificaciones a to, message
+        */
+
+        /*
+
+        ********************************************************************************************
+        ********************************************************************************************
+            Pendiente de refactorizar
+            Solo estaba experimentando jajajaja
+        ********************************************************************************************
+        ********************************************************************************************
         */
 
         const rootElement = document.getElementById('root');
@@ -148,6 +159,10 @@
                     <div className="container">
                         <button className="button is-dark" onClick={handleClickSend}>Enviar</button>
                     </div>
+                    No editable
+                        <PostCard {...props} color="lavender" font='simple'></PostCard>
+                    Editable
+                        <PostCard {...props} color="whitesmoke" editable={editable} msg={message} font='simple'></PostCard>
                 </div>
             )
         }
