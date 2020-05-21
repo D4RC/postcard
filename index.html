@@ -45,10 +45,7 @@
                     <div className="postimage"></div>
                     <div className="content">
                         <div className="destiny">
-                            <h5>{to.destinatary}</h5>
-                            <h5>{to.loc}, {to.str}</h5>
-                            <h5>{to.city}</h5>
-                            <h5>{to.zip}</h5>
+                            <DestinataryData {...to} editable></DestinataryData>
                         </div>
                         <h1>Estimado amigo</h1>
                         <p className={`msg ${font}`}>{msg}</p>
@@ -57,6 +54,41 @@
                 </div>
             )
         }
+
+        const DestinataryData = (props) => {
+            const {
+                destinatary,
+                loc,
+                city,
+                zip,
+                str
+            } = props;
+
+            if(props.editable)
+                return (
+                    <div className="destiny">
+                        <form className="form">
+                        {Object.entries(props).map((item)=> {
+                            return (
+                                <input className="input" value={item[1]} key={item[0]}></input>
+                                );
+                            }
+                        )}
+                        </form>
+                    </div>
+                )
+            else 
+                return (
+                    <div className="destiny">
+                        <h5>{destinatary}</h5>
+                        <h5>{loc}, {str}</h5>
+                        <h5>{city}</h5>
+                        <h5>{zip}</h5>
+                    </div>
+                )
+        }
+
+
 
         PostCard.propTypes = {
             to: PropTypes.objectOf(PropTypes.string),
