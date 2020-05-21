@@ -1,13 +1,14 @@
 <head>
     <link rel="stylesheet" type="text/css" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
 </head>
 <body>
     <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+
 
     <div id="root"></div>
 
@@ -35,7 +36,8 @@
                 to,
                 msg,
                 color,
-                font='cursive'
+                font='cursive',
+                editable=false
             } = props;
 
             const colorStyle = color ? {backgroundColor: color}:{};
@@ -45,7 +47,7 @@
                     <div className="postimage"></div>
                     <div className="content">
                         <div className="destiny">
-                            <DestinataryData {...to} editable></DestinataryData>
+                            <DestinataryData {...to} editable={editable}></DestinataryData>
                         </div>
                         <h1>Estimado amigo</h1>
                         <p className={`msg ${font}`}>{msg}</p>
@@ -86,15 +88,15 @@
             else 
                 return (
                     <div className="destiny">
-                        <h5>{destinatary}</h5>
-                        <h5>{loc}, {str}</h5>
-                        <h5>{city}</h5>
-                        <h5>{zip}</h5>
+                        {Object.entries(destinataryData).map((item)=> {
+                            return (
+                                    <h5 key={item[0]}>{item[1]}</h5>
+                                );
+                            }
+                        )}
                     </div>
                 )
         }
-
-
 
         PostCard.propTypes = {
             to: PropTypes.objectOf(PropTypes.string),
@@ -111,17 +113,45 @@
                 str: 'Maple ave 1317',
                 loc: 'Bay Shore' 
             },
-            msg: 'Un saludo desde México, ya crecio el Firulais',
+            msg: 'Un saludo desde México, ya crecio el Firulais'
         }
 
-        const RootJSX = (
-            <>
-                <PostCard {...props} color='lightBlue' font='cursive'></PostCard>
-                <PostCard {...props} color="Lavender" font="simple"></PostCard>
-                <PostCard {...props} color="whiteSmoke"></PostCard>
-            </>
-        )
+        const App = () => {
+            const [message, setMessage] = React.useState("Un saludo desde México, ya crecio el Firulais");
+            const [editable, toogleEdit] = React.useState(false)
 
-        ReactDOM.render(RootJSX,rootElement);
+            function handleMessageChange(event) {
+                setMessage(event.target.value)
+            }
+            function handleClickEdit() {
+                toogleEdit(!editable)
+            }
+
+            function handleClickSend() {
+                alert(`Mensaje enviado a: ${props.to.destinatary}`)
+            }
+
+            function textArea() {
+                if(editable)
+                    return (
+                    <textarea onChange={handleMessageChange} value={message}></textarea>
+                )
+            }
+
+            return (
+                <div className="App">
+                    <div className="container">
+                        <button className="button is-dark" onClick={handleClickEdit}>Editar</button>
+                        {textArea()}
+                    </div>
+                        <PostCard {...props} msg={message} editable={editable} color='lightBlue' font='cursive'></PostCard>
+                    <div className="container">
+                        <button className="button is-dark" onClick={handleClickSend}>Enviar</button>
+                    </div>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App/>,rootElement);
     </script>
 </body>
